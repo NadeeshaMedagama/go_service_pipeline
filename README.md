@@ -94,7 +94,11 @@ docker stop $(docker ps -q --filter ancestor=go-service-pipeline:local)
 
 ## 🔄 CI/CD Pipeline
 
-This project uses GitHub Actions for continuous integration and deployment. The pipeline is triggered on every push to the `main` branch.
+This project uses GitHub Actions for continuous integration and deployment. The pipeline can be triggered in multiple ways:
+
+- **Automatic**: On every push to the `main` branch
+- **Pull Requests**: On pull requests targeting the `main` branch
+- **Manual**: Using the "Run workflow" button in GitHub Actions tab
 
 ### Pipeline Stages
 
@@ -111,7 +115,16 @@ Configure the following secrets in your GitHub repository settings:
 - `DOCKERHUB_USERNAME`: Your Docker Hub username
 - `DOCKERHUB_TOKEN`: Your Docker Hub access token ([Create one](https://hub.docker.com/settings/security))
 
-**Note**: The workflow file contains a typo in the secret name (`DOCKERHUB_USERNMAE` should be `DOCKERHUB_USERNAME`). Make sure to set up the secret with the correct spelling.
+### Manual Trigger
+
+To manually trigger the workflow:
+
+1. Go to your repository on GitHub
+2. Click on the **Actions** tab
+3. Select the **Go CI/CD** workflow from the left sidebar
+4. Click the **Run workflow** dropdown button
+5. Select the branch (default: `main`)
+6. Click **Run workflow**
 
 ### Workflow File
 
@@ -215,9 +228,6 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 
-## 🐛 Known Issues
-
-- The CI/CD workflow has a typo: `DOCKERHUB_USERNMAE` should be `DOCKERHUB_USERNAME` in the login step
 
 ## 📧 Contact
 
